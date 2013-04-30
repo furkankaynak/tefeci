@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tefeci</title>
+  <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
+  <%= stylesheet_link_tag    "bootstrap-responsive", :media => "all" %>
+  <%= javascript_include_tag "jquery" %>
+  <%= javascript_include_tag "bootstrap" %>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<div class="container">
+
+<header class="jumbotron subhead" id="overview">
+  <div class="row">
+    <div class="span3">
+      <p class="lead">para bizden sorulur.</p>
+    </div>
+    
+  </div>
+  <div class="subnav">
+    <ul class="nav nav-pills">
+      <li><a href="#typography">Anasayfa</a></li>
+      <li><a href="#navbar">Kurbanlar</a></li>
+      <li><a href="#buttons">Borucuna Sadıklar</a></li>
+      <li><a href="#forms">Vurulacaklar</a></li>
+    </ul>
+  </div>
+</header>
+
+
+
+
+<!-- Typography
+================================================== -->
+<section id="typography">
+  <div class="page-header">
+    <h1>Tefeci</h1>
+  </div>
+
+  <!-- Headings & Paragraph Copy -->
+  <div class="row">
+    
+    <div class="span9">
+      <h3>Tefeci misin ?</h3>
+      <p>Tefecisin ve denizde kum sende para mı? Borç verdikten sonra borcunu kontrol edmiyor musun? Kazıklanıyorsun fakat farketmediğin zamanlar mı oluyor? </p>
+      <p>Vurulacaklar listesine kurbanlarını ekle istediğini yap.</p>
+    </div>
+    <div class="span9">
+      <h3>Twitter veya Facebook ile giriş yap</h3>
+      <a class="btn btn-primary">facebook</a>
+      <a class="btn btn-success">twitter</a>
+    </div>
+
+  </div>
+
+
+<br><br><br><br>
+      <hr>
+      <footer id="footer">
+        © 2013 - Mafyacı Yazılım.
+      </footer>
+</div><!-- /container -->
+</body>
+</html>
