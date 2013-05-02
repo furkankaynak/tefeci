@@ -17,7 +17,13 @@
     <%= f.label :amount , label = 'Miktar' ,:class=>'label label-warning' %><br />
     <%= f.text_field :amount %>
   </div>
-  <%= f.hidden_field :status, :value => 'not_paid' %>
+  <% if controller.action_name == 'edit' %>
+  	<%= f.label :status, label = 'Durum' ,:class=>'label label-warning' %><br />
+  	<%= select("debt", "status", STATUS_KEYS.collect{|key,value| [value, key]}) %>
+  <% else %>
+  	<%= f.hidden_field :status, :value => 'not_paid' %>
+  <% end %>
+  
   <div class="actions">
     <%= f.submit 'Kaydet', :class=>'btn btn-success' %>
   </div>

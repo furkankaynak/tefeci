@@ -3,9 +3,9 @@ class DebtsController < ApplicationController
   # GET /debts.json
   def index
     if params[:status]
-      @debts = Debt.find_all_by_status(params[:status])
+      @debts = connected_user.debts.find_all_by_status(params[:status])
     else
-      @debts = Debt.all
+      @debts = connected_user.debts.all
      end
      
     respond_to do |format|
@@ -17,7 +17,7 @@ class DebtsController < ApplicationController
   # GET /debts/1
   # GET /debts/1.json
   def show
-    @debt = Debt.find(params[:id])
+    @debt = connected_user.debts.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,7 +38,7 @@ class DebtsController < ApplicationController
 
   # GET /debts/1/edit
   def edit
-    @debt = Debt.find(params[:id])
+    @debt = connected_user.debts.find(params[:id])
   end
 
   # POST /debts
@@ -60,7 +60,7 @@ class DebtsController < ApplicationController
   # PUT /debts/1
   # PUT /debts/1.json
   def update
-    @debt = Debt.find(params[:id])
+    @debt = connected_user.debts.find(params[:id])
     values = params[:debt]
     respond_to do |format|
       if values[:amount].to_i < @debt.amount && values[:status] == "paid"

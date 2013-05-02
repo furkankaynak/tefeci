@@ -2,7 +2,7 @@ class VictimsController < ApplicationController
   # GET /victims
   # GET /victims.json
   def index
-    @victims = Victim.all
+    @victims = connected_user.victims.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class VictimsController < ApplicationController
   # GET /victims/1
   # GET /victims/1.json
   def show
-    @victim = Victim.find(params[:id])
+    @victim = connected_user.victims.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class VictimsController < ApplicationController
 
   # GET /victims/1/edit
   def edit
-    @victim = Victim.find(params[:id])
+    @victim = connected_user.victims.find(params[:id])
   end
 
   # POST /victims
@@ -56,7 +56,7 @@ class VictimsController < ApplicationController
   # PUT /victims/1
   # PUT /victims/1.json
   def update
-    @victim = Victim.find(params[:id])
+    @victim = connected_user.victims.find(params[:id])
 
     respond_to do |format|
       if @victim.update_attributes(params[:victim])
@@ -72,7 +72,7 @@ class VictimsController < ApplicationController
   # DELETE /victims/1
   # DELETE /victims/1.json
   def destroy
-    @victim = Victim.find(params[:id])
+    @victim = connected_user.victims.find(params[:id])
     @victim.destroy
 
     respond_to do |format|
