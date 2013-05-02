@@ -9,6 +9,7 @@
             <th>Düzenle</th>
             <th>Sil</th>
             <th>Twitterdan Tehdit Et</th>
+            <th>Faceebookdan Tehdit Et</th>
           </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
     		 <td><%= link_to 'Düzenle', edit_debt_path(debt), :class=>'btn btn-warning' %></td>
    			 <td><%= link_to 'Sil', debt, :confirm => 'Bence silme tekrar yontarız kerizi ?', :class => "btn btn-danger" , :method => :delete  %></td>
    			 <td><a data-related="<%= debt.victim.twitter_username %>" href="https://twitter.com/intent/tweet?screen_name=<%= debt.victim.twitter_username %>&text=Borcu odemezsen topuğuna sıkarım haa borç = <%= debt.amount %> TL" class='btn btn-info'>Topuğuna Sık</a></td>
+  			 <td><div class="fb-like" data-href="http://www.tefeciborc.herokuapp.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="lucida grande"></div></td>
   			</tr>
 		<% end %>
         </tbody>
@@ -30,3 +32,11 @@
 <%= link_to 'Yeni Borç', new_debt_path, :class=>'btn' %>
 
  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/tr_TR/all.js#xfbml=1&appId=427471347349217";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

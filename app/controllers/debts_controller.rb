@@ -48,7 +48,7 @@ class DebtsController < ApplicationController
    
     respond_to do |format|
       if @debt.save
-        format.html { redirect_to @debt, notice: 'Debt was successfully created.' }
+        format.html { redirect_to @debt, notice: 'Kurban olusturuldu.' }
         format.json { render json: @debt, status: :created, location: @debt }
       else
         format.html { render action: "new" }
@@ -63,16 +63,25 @@ class DebtsController < ApplicationController
     @debt = connected_user.debts.find(params[:id])
     values = params[:debt]
     respond_to do |format|
+      
       if values[:amount].to_i < @debt.amount && values[:status] == "paid"
         values[:amount] = (@debt.amount - values[:amount].to_i).to_s
-        values[:status] = "not_paid"  
+        values[:status] = "not_paid"
+      elsif  values[:amount].to_i > @debt.amount && values[:status] == "paid"
+        format.html { render action: "edit" }
+        format.json { render json: @debt.errors, status: :unprocessable_entity }
+      elsif values[:amount].to_i > @debt.amount && values[:status] == "not_paid"
+        values[:amount] = (@debt.amount + values[:amount].to_i).to_s
+      else
+        
+      end
+      
       if @debt.update_attributes(values)
         format.html { redirect_to @debt, notice: 'Borc Guncellendi.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @debt.errors, status: :unprocessable_entity }
-      end
       end
     end
   end
