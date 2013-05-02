@@ -1,0 +1,25 @@
+<% if notice %>
+<div class="alert alert-success">
+  <%= notice %>
+</div>
+<% end %>
+
+
+<p>
+  <b>Miktar:</b>
+  <%= @debt.amount %>
+</p>
+
+<p>
+  <b>Kurban:</b>
+  <%= @debt.victim.fullname %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @debt.status_value %>
+</p>
+
+
+<%= link_to 'Düzenle', edit_debt_path(@debt), :class=>'btn' %> |
+<%= link_to 'Geri', debts_path , :class => 'btn btn-warning'%>

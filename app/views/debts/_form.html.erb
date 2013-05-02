@@ -1,0 +1,24 @@
+<%= form_for(@debt) do |f| %>
+  <% if @debt.errors.any? %>
+    <div id="error_explanation">
+      <% @debt.errors.full_messages.each do |msg| %>
+        	<div class="alert alert-error">
+ 				<%= msg %>
+			</div><br />
+      <% end %>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :victim_id, label = 'Kurban' ,:class=>'label label-warning' %><br />
+    <%= select("debt", "victim_id", connected_user.victims.collect{|v| [v.fullname, v.id]}) %>
+  </div>
+  <div class="field">
+    <%= f.label :amount , label = 'Miktar' ,:class=>'label label-warning' %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <%= f.hidden_field :status, :value => 'not_paid' %>
+  <div class="actions">
+    <%= f.submit 'Kaydet', :class=>'btn btn-success' %>
+  </div>
+<% end %>

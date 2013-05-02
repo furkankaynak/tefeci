@@ -1,0 +1,26 @@
+<h1>Kurbanlar Listesi</h1>
+
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Kurban Adı</th>
+            <th>Toplam Borç</th>
+            <th>Twitter Kullanıcı Adı</th>
+            <th>Facebook Kullanıcı Adı</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @victims.each do |victim| %>
+          <tr>
+             <td><%= link_to victim.fullname,victim %> </td>
+            <td>500.0 </td>
+            <td><%= victim.twitter_username %></td>
+            <td><%= victim.facebook_username %></td>
+          </tr>
+        <% end %>
+        </tbody>
+</table>
+
+<br />
+
+<%= link_to 'Yeni Kurban', new_victim_path, :class=>'btn' %>

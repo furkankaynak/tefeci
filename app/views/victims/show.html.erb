@@ -1,0 +1,23 @@
+<% if notice %>
+<div class="alert alert-success">
+  <%= notice %>
+</div>
+<% end %>
+
+<p>
+  <b>Kurban adı: </b>
+  <%= @victim.fullname %>
+</p>
+
+<p>
+  <b>Twitter kullanıcı adı:</b>
+  <%= link_to @victim.twitter_username, 'http://www.twitter.com/'+@victim.twitter_username %>
+</p>
+
+<p>
+  <b>Facebook kullanıcı adı:</b>
+  <%= link_to @victim.facebook_username, 'http://www.facebook.com/'+@victim.facebook_username %>
+</p>
+
+
+<%= link_to 'Düzenle', edit_victim_path(@victim), :class=>'btn' %>

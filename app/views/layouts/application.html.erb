@@ -4,6 +4,7 @@
   <title>Tefeci</title>
   <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
   <%= stylesheet_link_tag    "bootstrap-responsive", :media => "all" %>
+  <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "jquery" %>
   <%= javascript_include_tag "bootstrap" %>
   
@@ -11,58 +12,55 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-
+	
 <div class="container">
 
 <header class="jumbotron subhead" id="overview">
   <div class="row">
     <div class="span3">
       <p class="lead">para bizden sorulur.</p>
-    </div>
-    
+    </div>  
   </div>
+  
   <div class="subnav">
     <ul class="nav nav-pills">
-      <li><a href="#typography">Anasayfa</a></li>
-      <li><a href="#navbar">Kurbanlar</a></li>
-      <li><a href="#buttons">Borucuna Sadıklar</a></li>
-      <li><a href="#forms">Vurulacaklar</a></li>
+      <li><%= link_to 'Anasayfa', root_path %></li>
+      <% if connected_user %>
+      <li><%= link_to 'Kurbanlar', victims_path %> </li>
+      <li><%= link_to 'Borcunu Ödeyenler',debts_path(:status=>'paid') %></li>
+      <li><%= link_to 'Borcunu Ödemeyenler',debts_path(:status=>'not_paid') %></li>
+      <% end %>
     </ul>
   </div>
 </header>
 
-
-
-
-<!-- Typography
-================================================== -->
-<section id="typography">
   <div class="page-header">
-    <h1>Tefeci</h1>
+    <div class="row">
+     <div class="span9">
+      <h1>Tefeci <%= connected_user.name if connected_user %></h1>
+    </div>
+    <div class="span2">
+      <a class="btn btn-success" href="#" onClick="history.go(-1)">geri</a>
+      <% if connected_user %>
+      <a class="btn btn-danger" href="/logout">Çıkış</a>
+      <% end %>
+    </div>
+    </div>
   </div>
 
-  <!-- Headings & Paragraph Copy -->
   <div class="row">
     
     <div class="span9">
-      <h3>Tefeci misin ?</h3>
-      <p>Tefecisin ve denizde kum sende para mı? Borç verdikten sonra borcunu kontrol edmiyor musun? Kazıklanıyorsun fakat farketmediğin zamanlar mı oluyor? </p>
-      <p>Vurulacaklar listesine kurbanlarını ekle istediğini yap.</p>
+      <%= yield %>
     </div>
-    <div class="span9">
-      <h3>Twitter veya Facebook ile giriş yap</h3>
-      <a class="btn btn-primary">facebook</a>
-      <a class="btn btn-success">twitter</a>
-    </div>
-
+  
   </div>
 
 
 <br><br><br><br>
       <hr>
       <footer id="footer">
-        © 2013 - Mafyacı Yazılım.
+        © 2013 - Mafyacı Yazılım. furkan kaynak
       </footer>
 </div><!-- /container -->
 </body>

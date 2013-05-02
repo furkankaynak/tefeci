@@ -1,0 +1,32 @@
+<h1>Borçlar Listesi</h1>
+
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Borç</th>
+            <th>Kurban</th>
+            <th>Durum</th>
+            <th>Düzenle</th>
+            <th>Sil</th>
+            <th>Twitterdan Tehdit Et</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @debts.each do |debt| %>
+  			<tr>
+   			 <td><%= link_to debt.amount.to_s+' TL' , debt_path(debt) %> </td>
+   			 <td><%= debt.victim.fullname %></td>
+    		 <td><%= debt.status_value %></td>
+    		 <td><%= link_to 'Düzenle', edit_debt_path(debt), :class=>'btn btn-warning' %></td>
+   			 <td><%= link_to 'Sil', debt, :confirm => 'Bence silme tekrar yontarız kerizi ?', :class => "btn btn-danger" , :method => :delete  %></td>
+   			 <td><a data-related="<%= debt.victim.twitter_username %>" href="https://twitter.com/intent/tweet?screen_name=<%= debt.victim.twitter_username %>&text=Borcu odemezsen topuğuna sıkarım haa borç = <%= debt.amount %> TL" class='btn btn-info'>Topuğuna Sık</a></td>
+  			</tr>
+		<% end %>
+        </tbody>
+</table>
+
+<br />
+
+<%= link_to 'Yeni Borç', new_debt_path, :class=>'btn' %>
+
+ <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
