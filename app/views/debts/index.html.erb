@@ -21,7 +21,7 @@
     		 <td><%= link_to 'Düzenle', edit_debt_path(debt), :class=>'btn btn-warning' %></td>
    			 <td><%= link_to 'Sil', debt, :confirm => 'Bence silme tekrar yontarız kerizi ?', :class => "btn btn-danger" , :method => :delete  %></td>
    			 <td><a data-related="<%= debt.victim.twitter_username %>" href="https://twitter.com/intent/tweet?screen_name=<%= debt.victim.twitter_username %>&text=Borcu odemezsen topuğuna sıkarım haa borç = <%= debt.amount %> TL" class='btn btn-info'>Topuğuna Sık</a></td>
-  			 <td><div class="fb-like" data-href="http://www.tefeciborc.herokuapp.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="lucida grande"></div></td>
+  			 <td><div class="fb-like" data-href="<%= debt_url(debt)%>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="lucida grande"></div></td>
   			</tr>
 		<% end %>
         </tbody>
