@@ -68,7 +68,7 @@ class DebtsController < ApplicationController
         values[:amount] = (@debt.amount - values[:amount].to_i).to_s
         values[:status] = "not_paid"
       elsif  values[:amount].to_i > @debt.amount && values[:status] == "paid"
-        format.html { render action: "edit" }
+        format.html { redirect_to @debt }
         format.json { render json: @debt.errors, status: :unprocessable_entity }
       elsif values[:amount].to_i > @debt.amount && values[:status] == "not_paid"
         values[:amount] = (@debt.amount + values[:amount].to_i).to_s

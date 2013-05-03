@@ -4,11 +4,12 @@ class AuthenticateController < ApplicationController
     name =  auth_hash["info"]["name"]
     user = User.find_by_uid(uid) || User.create_user(auth_hash)
     session[:user] = user.id
+    session[:user_pic] = auth_hash['info']['image']
     redirect_to root_url
   end
 
   def logout
-    session[:user] = nil
+    reset_session
     redirect_to root_url
   end
   

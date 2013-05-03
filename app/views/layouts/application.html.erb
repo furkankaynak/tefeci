@@ -37,7 +37,7 @@
   <div class="page-header">
     <div class="row">
      <div class="span9">
-      <h1>Tefeci <%= connected_user.name if connected_user %></h1>
+      <h1>Tefeci <%= connected_user.name if connected_user %> <img src="<%= session[:user_pic] %>" class="img-circle"></h1>
     </div>
     <div class="span2">
       <a class="btn btn-success" href="#" onClick="history.go(-1)">geri</a>
